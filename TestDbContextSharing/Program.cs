@@ -13,7 +13,7 @@ namespace TestDbContextSharing
 		private static void Main()
 		{
 			using var serviceProvider = new ServiceCollection()
-				.AddLogging(opts => opts.SetMinimumLevel(LogLevel.Trace).AddConsole())
+				.AddLogging(opts => opts.SetMinimumLevel(LogLevel.Trace).AddConsole(cfg => cfg.MaxQueueLength = 1))
 				.AddSingleton<SharedDataSource>()
 				.AddScoped<SharedConnection>()
 
